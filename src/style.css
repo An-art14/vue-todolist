@@ -5,13 +5,14 @@
 
 body {
   font-family: 'My-Font', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url('./images/fond.jpg'); 
   background-size: cover;
   background-repeat: no-repeat; 
   background-position: right top;
   background-attachment: fixed;
-  margin: 0;
-  padding: 0;
 }
 
 .main-container {
@@ -121,29 +122,7 @@ h1 {
     font-size: 40px; /* Уменьшенный размер заголовка */
   }
 
-  .tabs {
-    flex-direction: column; /* Вертикальное расположение кнопок */
-    align-items: center;
-  }
-
-  .tabs button {
-    width: 100%; /* Кнопки занимают всю ширину */
-  }
-
-  .main-container {
-    padding: 10px; /* Уменьшенные отступы */
-  }
-
-  .task-entry {
-    flex-direction: column; /* Вертикальное расположение элементов ввода */
-  }
-
-  .task-input {
-    width: 100%; /* Полная ширина поля ввода */
-    margin-bottom: 10px; /* Отступ между полем ввода и кнопкой */
-  }
-
-  .add-task-button {
-    width: 100%; /* Полная ширина кнопки добавления задачи */
+  body {
+    background-position: center;
   }
 }
