@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-        <h1>ToDo List</h1>
+        <h1>ToDo List </h1>
         <task-input />
         <div class="tabs">
             <button @click="setFilter('all')" :class="{ active: filter === 'all' }">Все</button>
