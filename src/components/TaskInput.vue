@@ -23,6 +23,8 @@ export default {
             if (taskText.value.trim()) {
                 todoStore.addTask(taskText.value);
                 taskText.value = '';
+            } else {
+                alert('Введите задачу!');
             }
         };
 
