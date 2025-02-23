@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useTodoStore } from '../stores/todoStore';
 import TaskItem from './TaskItem.vue';
 
@@ -18,7 +19,7 @@ export default defineComponent({
     components: { TaskItem },
     setup() {
         const todoStore = useTodoStore();
-        const filteredTasks = computed(() => todoStore.filteredTasks);
+        const { filteredTasks } = storeToRefs(todoStore);
         return { filteredTasks };
     },
 });

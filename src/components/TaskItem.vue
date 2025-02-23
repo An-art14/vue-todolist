@@ -7,12 +7,17 @@
             class="task-checkbox"
         />
         <span class="task-text">{{ task.text }}</span>
-        <button @click="removeTask" class="delete-button">Удалить</button>
+        <button @click="removeTask" class="delete-button">✖️</button>
+        <div v-if="showRemove" class="remove">
+            <div class="remove-content">
+            <p class="delete">Задача удалена ✅</p>
+            </div>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useTodoStore } from '../stores/todoStore';
 import type { Task } from '../stores/todoStore';
 
@@ -25,6 +30,7 @@ export default defineComponent({
     },
     setup(props) {
         const todoStore = useTodoStore();
+        const showRemove = ref(false);
 
         const toggleTask = () => {
             todoStore.toggleTask(props.task.id);
@@ -32,9 +38,11 @@ export default defineComponent({
 
         const removeTask = () => {
             todoStore.removeTask(props.task.id);
+            showRemove.value = true;
+            setTimeout(() =>  (showRemove.value = false), 1500);
         };
 
-        return { toggleTask, removeTask };
+        return { toggleTask, removeTask, showRemove };
     },
 });
 </script>
