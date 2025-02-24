@@ -20,7 +20,7 @@
 
         <div v-if="showModal" class="modal" :class="{ snake: showError }">
             <div class="modal-content">
-                <p class="paragraph">⚠️  Введите задачу </p>
+                <p class="paragraph"> Введите задачу  </p>
                 <button @click="showModal = false">Закрыть</button>
             </div>
         </div>

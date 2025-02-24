@@ -7,7 +7,7 @@
             class="task-checkbox"
         />
         <span class="task-text">{{ task.text }}</span>
-        <button @click="removeTask" class="delete-button">✖️</button>
+        <button @click="removeTask" class="delete-button">х</button>
         <div v-if="showRemove" class="remove">
             <div class="remove-content">
             <p class="delete">Задача удалена ✅</p>
