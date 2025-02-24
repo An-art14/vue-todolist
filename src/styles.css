@@ -251,3 +251,15 @@ h1 {
 .task-text {
     cursor: pointer;
 }
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.edit-button:hover {
+    color:#42b983;
+}

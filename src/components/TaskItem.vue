@@ -13,7 +13,8 @@
             @blur="saveEdit"
             class="edit-input"
         />
-        <span v-else @dblclick="startEdit" class="task-text">{{ task.text }}</span>
+        <span v-else class="task-text">{{ task.text }}</span>
+        <button @click="startEdit" class="edit-button">✎</button>
         <button @click="removeTask" class="delete-button">х</button>
     </div>
 </template>
