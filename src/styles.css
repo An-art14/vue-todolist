@@ -16,6 +16,7 @@ body {
 }
   
 .main-container {
+    width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
@@ -67,6 +68,8 @@ h1 {
 }
   
 .tabs {
+    width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: center;
     margin-top: -2rem;
@@ -74,7 +77,6 @@ h1 {
 }
   
 .tabs button {
-    max-width: 168px;
     background-color: #f0f0f0;;
     border: 1px solid  #959998;
     border-radius: 4px;
