@@ -4,6 +4,8 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
   font-family: 'My-Font', sans-serif;
   background-image: url('./images/black-concrete-wall.jpg');
   background-size: cover;
@@ -56,6 +58,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .task-entry {
