@@ -1,60 +1,57 @@
-/* Global Styles */
-
 @font-face {
     font-family: 'My-Font';
     src: url(./assets/AmericanTypewriter.ttc);
-  }
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+}
   
-  body {
+body {
     font-family: 'My-Font', sans-serif;
     background-image: url('./images/black-concrete-wall.jpg');
     margin-top: 5rem;
-  }
+}
   
-  .main-container {
-    max-width: 800px;
+.main-container {
+    max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
-  }
+}
   
-  h1 {
+h1 {
     font-size: 3rem;
     white-space: nowrap;
     text-align: center;
     margin-bottom: 2rem;
     color: #22c48b;
-  }
+}
   
-  /* Task Input Styles */
-  .task-entry-container {
+.task-entry-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
-  }
+}
   
-  .task-entry {
+.task-entry {
     display: flex;
     width: 100%;
     max-width: 500px;
     margin-bottom: 1rem;
-  }
+}
   
-  .task-input {
+.task-input {
     flex-grow: 1;
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-  }
+}
   
-  .add-task-button {
+.add-task-button {
     background-color: #22c48b;
     color: #fff;
     border: none;
@@ -63,21 +60,20 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
-  .add-task-button:hover {
+.add-task-button:hover {
     background-color:  #1a9b6e;
-  }
+}
   
-  /* Tabs Styles */
-  .tabs {
+.tabs {
     display: flex;
     justify-content: center;
     margin-top: -2rem;
     flex-wrap: wrap;
-  }
+}
   
-  .tabs button {
+.tabs button {
     max-width: 168px;
     background-color: #f0f0f0;;
     border: 1px solid  #959998;
@@ -86,69 +82,80 @@
     padding: 0.5rem 1rem;
     transition: background-color 0.3s ease;
     flex-grow: 1;
-  }
+}
   
-  .tabs button.active {
+.tabs button.active {
     background-color:  #22c48b;
     color: white;
-  }
+}
   
-  .tabs button:hover {
+.tabs button:hover {
     background-color: #22c48b;
     color: white;
-  }
+}
   
-  /* Task List Styles */
-  .task-item {
+.task-item {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 0.5rem 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .task-item.completed {
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.task-item:hover {
+    background-color: #d4dedb;
+}
+
+.task-item.completed {
     background-color: #f1f1f1;
     text-decoration: line-through;
     color: #666;
-  }
+}
   
-  .task-checkbox {
+.task-checkbox {
     margin-right: 1rem;
-  }
+}
   
-  .task-text {
+.task-text {
     flex-grow: 1;
-  }
+}
   
-  .delete-button {
+.delete-button {
     background-color: transparent;
     color: #dc3545;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
-  }
+}
   
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .main-container {
+
+@media (max-width: 768px) {
+.main-container {
       padding: 1rem;
-    }
+}
+
+.task-item {
+    padding: 0.5rem;
+}
+
+.task-entry {
+    flex-direction: column;
+    align-items: center;
+}
   
-    .task-entry {
-      flex-direction: column;
-      align-items: center;
-    }
+.task-input {
+    width: 100%;
+    margin-bottom: 1rem;
+}
   
-    .task-input {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-  
-    .add-task-button {
-      width: 100%;
-    }
-  }
+.add-task-button {
+    width: 100%;
+}
+}
   
