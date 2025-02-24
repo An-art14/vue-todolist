@@ -1,4 +1,5 @@
 <template>
+    <div class="task-entry-container">
     <div class="task-entry">
         <input
             v-model="taskText"
@@ -9,6 +10,7 @@
         <button @click="addTask" class="add-task-button">
             Добавить
         </button>
+        </div>
          <div v-if="showEmoji" class="emoji"> 
             <div class="emoji-content">
             <img src="../images/celebration.gif" alt="celebration" class="gif" />
