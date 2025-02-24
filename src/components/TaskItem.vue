@@ -6,13 +6,15 @@
             @change="toggleTask"
             class="task-checkbox"
         />
-        <span class="task-text">{{ task.text }}</span>
+        <input 
+            v-if="isEditing"
+            v-model="editedText"
+            @keyup.enter="saveEdit"
+            @blur="saveEdit"
+            class="edit-input"
+        />
+        <span v-else @dblclick="startEdit" class="task-text">{{ task.text }}</span>
         <button @click="removeTask" class="delete-button">х</button>
-        <div v-if="showRemove" class="remove">
-            <div class="remove-content">
-            <p class="delete">Задача удалена ✅</p>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -30,7 +32,8 @@ export default defineComponent({
     },
     setup(props) {
         const todoStore = useTodoStore();
-        const showRemove = ref(false);
+        const isEditing = ref(false);
+        const editedText = ref('');
 
         const toggleTask = () => {
             todoStore.toggleTask(props.task.id);
@@ -38,11 +41,21 @@ export default defineComponent({
 
         const removeTask = () => {
             todoStore.removeTask(props.task.id);
-            showRemove.value = true;
-            setTimeout(() =>  (showRemove.value = false), 1500);
         };
 
-        return { toggleTask, removeTask, showRemove };
+        const startEdit = () => {
+            isEditing.value = true;
+            editedText.value = props.task.text;
+        };
+
+        const saveEdit = () => {
+            if (editedText.value.trim()) {
+                todoStore.editTask(props.task.id, editedText.value);
+            } 
+            isEditing.value = false;
+        };
+
+        return { toggleTask, removeTask, isEditing, editedText, startEdit, saveEdit };
     },
 });
 </script>

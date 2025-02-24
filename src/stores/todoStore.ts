@@ -27,6 +27,13 @@ export const useTodoStore = defineStore('todo', {
         setFilter(filter: 'all' | 'completed' | 'incomplete') {
             this.filter = filter;
         },
+
+        editTask(id: number, newTask: string) {
+            const task = this.tasks.find(task => task.id === id);
+            if (task) {
+                task.text = newTask;
+            }
+        },
     },
     getters: {
         filteredTasks: (state) => {
