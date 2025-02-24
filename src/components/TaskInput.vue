@@ -20,7 +20,7 @@
 
         <div v-if="showModal" class="modal" :class="{ snake: showError }">
             <div class="modal-content">
-                <p class="paragraph"> Введите задачу  </p>
+                <img src="../images/error.jpg" alt="er" class="Error" />
                 <button @click="showModal = false">Закрыть</button>
             </div>
         </div>
@@ -39,6 +39,7 @@ export default {
         const showError = ref(false);
         const showEmoji = ref(false);
         const gif = ref(false);
+        const Error = ref(false);
 
         const addTask = () => {
             if (taskText.value.trim()) {
@@ -48,15 +49,18 @@ export default {
                 gif.value = true;
                 setTimeout(() => (gif.value = false), 1500);
                 setTimeout(() => (showEmoji.value = false), 1500);
+                Error.value = false;
                 showError.value = false;
             } else {
                 showModal.value = true;
                 showError.value = true;
+                Error.value = true;
+                setTimeout(() => (Error.value = false), 400);
                 setTimeout(() => (showError.value = false), 400);
             }
         };
 
-        return { taskText, addTask, showModal, showError, showEmoji };
+        return { taskText, addTask, showModal, showError, showEmoji, Error };
     },
 };
 </script>
