@@ -4,6 +4,7 @@
             type="checkbox"
             :checked="task.completed"
             @change="toggleTask"
+            :disabled="isEditing"
             class="task-checkbox"
         />
         <input 
@@ -14,49 +15,52 @@
             class="edit-input"
         />
         <span v-else class="task-text">{{ task.text }}</span>
-        <button @click="startEdit" class="edit-button">✎</button>
+        <button @click="startEdit" class="edit-button" v-if="!isEditing">✎</button>
         <button @click="removeTask" class="delete-button">х</button>
+
+    <div v-if="showRemove" class="remove">
+        <div class="remove-content">
+            <p class="delete">Задача удалена</p>
+        </div>
+    </div>
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import { useTodoStore } from '../stores/todoStore';
-import type { Task } from '../stores/todoStore';
+import type { Task } from '../types/task';
 
-export default defineComponent({
-    props: {
-        task: {
-            type: Object as () => Task,
-            required: true,
-        },
-    },
-    setup(props) {
-        const todoStore = useTodoStore();
-        const isEditing = ref(false);
-        const editedText = ref('');
+const props = defineProps<{
+    task: Task;
+}>();
 
-        const toggleTask = () => {
-            todoStore.toggleTask(props.task.id);
-        };
+const todoStore = useTodoStore();
+const isEditing = ref(false);
+const editedText = ref('');
+const showRemove = ref(false);
 
-        const removeTask = () => {
-            todoStore.removeTask(props.task.id);
-        };
+const toggleTask = () => {
+    todoStore.toggleTask(props.task.id);
+};
 
-        const startEdit = () => {
-            isEditing.value = true;
-            editedText.value = props.task.text;
-        };
+const removeTask = () => {
+    todoStore.removeTask(props.task.id);
+    showRemove.value = true;
+    setTimeout(() =>  {
+        showRemove.value = false;
+    }, 2000);
+};
 
-        const saveEdit = () => {
-            if (editedText.value.trim()) {
-                todoStore.editTask(props.task.id, editedText.value);
-            } 
-            isEditing.value = false;
-        };
+const startEdit = () => {
+    isEditing.value = true;
+    editedText.value = props.task.text;
+};
 
-        return { toggleTask, removeTask, isEditing, editedText, startEdit, saveEdit };
-    },
-});
+const saveEdit = () => {
+    if (editedText.value.trim()) {
+        todoStore.editTask(props.task.id, editedText.value);
+    } 
+    isEditing.value = false;
+};
 </script>

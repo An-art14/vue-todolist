@@ -38,29 +38,26 @@ export default {
         const showModal = ref(false);
         const showError = ref(false);
         const showEmoji = ref(false);
-        const gif = ref(false);
-        const Error = ref(false);
+
+        const resetStates = () => {
+            showEmoji.value = false;
+            showError.value = false;
+        };
 
         const addTask = () => {
             if (taskText.value.trim()) {
                 todoStore.addTask(taskText.value);
                 taskText.value = '';
                 showEmoji.value = true;
-                gif.value = true;
-                setTimeout(() => (gif.value = false), 1500);
-                setTimeout(() => (showEmoji.value = false), 1500);
-                Error.value = false;
-                showError.value = false;
+                setTimeout(resetStates, 1500);
             } else {
                 showModal.value = true;
                 showError.value = true;
-                Error.value = true;
-                setTimeout(() => (Error.value = false), 400);
-                setTimeout(() => (showError.value = false), 400);
+                setTimeout(resetStates, 400);
             }
         };
 
-        return { taskText, addTask, showModal, showError, showEmoji, Error };
+        return { taskText, addTask, showModal, showError, showEmoji, };
     },
 };
 </script>

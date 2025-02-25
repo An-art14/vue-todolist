@@ -1,22 +1,29 @@
 import { defineStore } from 'pinia';
-
-export interface Task {
-    id: number;
-    text: string;
-    completed: boolean;
-}
+import type { Task } from '../types/task';
 
 export const useTodoStore = defineStore('todo', {
     state: () => ({
         tasks: [] as Task[],
-        filter: 'all' as 'all' | 'completed' | 'incomplete',
+        deletedTasks: [] as Task[], 
+        filter: 'all' as 'all' | 'completed' | 'incomplete' | 'deleted', 
     }),
     actions: {
         addTask(text: string) {
             this.tasks.push({ id: Date.now(), text, completed: false });
         },
         removeTask(id: number) {
-            this.tasks = this.tasks.filter(task => task.id !== id);
+            const task = this.tasks.find(task => task.id === id);
+            if (task) {
+                this.deletedTasks.push(task); 
+                this.tasks = this.tasks.filter(task => task.id !== id); 
+            }
+        },
+        restoreTask(id: number) {
+            const task = this.deletedTasks.find(task => task.id === id);
+            if (task) {
+                this.tasks.push(task);
+                this.deletedTasks = this.deletedTasks.filter(task => task.id !== id); 
+            }
         },
         toggleTask(id: number) {
             const task = this.tasks.find(task => task.id === id);
@@ -24,10 +31,9 @@ export const useTodoStore = defineStore('todo', {
                 task.completed = !task.completed;
             }
         },
-        setFilter(filter: 'all' | 'completed' | 'incomplete') {
+        setFilter(filter: 'all' | 'completed' | 'incomplete' | 'deleted') {
             this.filter = filter;
         },
-
         editTask(id: number, newTask: string) {
             const task = this.tasks.find(task => task.id === id);
             if (task) {
@@ -37,12 +43,16 @@ export const useTodoStore = defineStore('todo', {
     },
     getters: {
         filteredTasks: (state) => {
-            if (state.filter === 'completed') {
-                return state.tasks.filter(task => task.completed);
-            } else if (state.filter === 'incomplete') {
-                return state.tasks.filter(task => !task.completed);
+            switch(state.filter) {
+                case 'completed':
+                    return state.tasks.filter(task => task.completed);
+                case 'incomplete':
+                    return state.tasks.filter(task => !task.completed);
+                case 'deleted':
+                    return state.deletedTasks;
+                default:
+                    return state.tasks;
             }
-            return state.tasks;
         },
     },
 });
