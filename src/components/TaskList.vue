@@ -16,7 +16,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { storeToRefs } from 'pinia';
-import type { Task } from '../types/task';
 import { useTodoStore } from '../stores/todoStore';
 import TaskItem from './TaskItem.vue';
 
