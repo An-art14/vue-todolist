@@ -1,15 +1,11 @@
 <template>
     <div>
-        <transition-group name="zoom-out" tag="div"
-        enter-active-class=""
-        leave-active-class="animate__animated animate__zoomOut">
-            <task-item
-                v-for="task in filteredTasks"
-                :key="task.id"
-                :task="task"
-                class="task-item"
-            />
-        </transition-group>   
+        <task-item
+            v-for="task in filteredTasks"
+            :key="task.id"
+            :task="task"
+            class="task-item"
+        />
     </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
-    <div :class="{ completed: task.completed }" class="task-item">
+    <transition name="zoom-out">
+    <div v-if="!isRemoved" :class="{ completed: task.completed }" class="task-item">
         <input
             type="checkbox"
             :checked="task.completed"
@@ -17,13 +18,8 @@
         <span v-else class="task-text">{{ task.text }}</span>
         <button @click="startEdit" class="edit-button" v-if="!isEditing">✎</button>
         <button @click="removeTask" class="delete-button">х</button>
-
-    <div v-if="showRemove" class="remove">
-        <div class="remove-content">
-            <p class="delete">Задача удалена</p>
-        </div>
     </div>
-    </div>
+    </transition>
 </template>
 
 <script setup lang="ts">
@@ -38,18 +34,17 @@ const props = defineProps<{
 const todoStore = useTodoStore();
 const isEditing = ref(false);
 const editedText = ref('');
-const showRemove = ref(false);
+const isRemoved = ref(false);
 
 const toggleTask = () => {
     todoStore.toggleTask(props.task.id);
 };
 
 const removeTask = () => {
-    todoStore.removeTask(props.task.id);
-    showRemove.value = true;
-    setTimeout(() =>  {
-        showRemove.value = false;
-    }, 2000);
+    isRemoved.value = true;
+    setTimeout(() => {
+        todoStore.removeTask(props.task.id);
+    }, 200);
 };
 
 const startEdit = () => {

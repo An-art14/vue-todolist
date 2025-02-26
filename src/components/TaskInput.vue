@@ -13,7 +13,7 @@
         </div>
          <div v-if="showEmoji" class="emoji"> 
             <div class="emoji-content">
-            <img src="../images/celebration.gif" alt="celebration" class="gif" />
+            <img src="../images/cat_celebration.gif" alt="celebration" class="gif" />
             <p class="done">Задача добавлена  ✅</p>
             </div>
         </div>
